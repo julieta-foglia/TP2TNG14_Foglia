@@ -31,51 +31,77 @@ public class Polinomio {
 	}
 
 
-	double evaluarMSucesivas (double x) throws ElevadoALaCeroException{
-		double resultado=0;
+	public double evaluarMSucesivas (double x) throws ElevadoALaCeroException {
+		
+		double resultado = 0;
+		
 		for (int i=0 ; i <= this.grado ; i++)
 		{
-			resultado+= this.coeficientes[i]*potenciaPorMSucesivas(x,(this.grado-i));
+			resultado += this.coeficientes[i] * potenciaPorMSucesivas(x,(this.grado-i));
 		}
+		
 		return resultado;
 	}
 
-	double potenciaPorMSucesivas(double base, double exp) throws ElevadoALaCeroException {
+	public double potenciaPorMSucesivas(double base, double exp) throws ElevadoALaCeroException {
 	    double resultado=1;
-	    if(base==0 && exp==0)
+	    
+	    if(base == 0 && exp == 0)
 	    	throw new ElevadoALaCeroException("ERROR: 0 a la 0");
-	    if(base!=0)
+	    
+	    if(base != 0)
 	    {
-	        for(int i=0 ; i < exp ; i++)
-	        	resultado*=base;
+	        for(int i = 0 ; i < exp ; i++)
+	        	resultado *= base;
+	        
 	        return resultado;
 	    }
 	    return 0;
 	}
 	
-	double  evaluarRecursiva (double x){
+	//potencia (x, n) = x ∗ potencia(x, n−1)
+	
+	public double evaluarRecursiva(double x)
+	{
+		return evaluarPolinomioRec(x, this.getGrado());
+	}
+
+	public double evaluarPolinomioRec(double x, int grado)
+	{
+		if (grado == this.getGrado())
+			return this.coeficientes[grado];
+	 
+		else 
+			return (this.coeficientes[grado] * Math.pow(x, grado) + evaluarPolinomioRec(x, grado-1));
+	}
+	
+	public double evaluarRecursivaPar (double x) {
 		return x;
 	}
 	
-	double evaluarRecursivaPar (double x){
+	public double evaluarProgDinamica (double x) {
 		return x;
 	}
 	
-	double evaluarProgDinamica (double x){
+	public double evaluarMejorada (double x){
 		return x;
 	}
 	
-	double evaluarMejorada (double x){
+	public double evaluarPow(double x){
 		return x;
 	}
 	
-	double evaluarPow(double x){
-		return x;
+	//No se si está bien
+	public double evaluarHorner (double x) {
+		 
+		double resultado = 0;
+	        
+		 for (int i = this.getGrado(); i >= 0; i--)
+	            resultado = this.coeficientes[i] + (x * resultado);
+		 
+	     return resultado;
 	}
 	
-	double evaluarHorner (double x){
-		return x;
-	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
