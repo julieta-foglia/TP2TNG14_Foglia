@@ -11,8 +11,7 @@ public class Polinomio {
 	
 	public Polinomio(int grado){
 		this.grado = grado;
-		coeficientes = new double [grado+1];
-		this.coeficientes[0]=grado;
+		coeficientes = new double [grado];
 	}
 	
 	public int getGrado() {
@@ -37,10 +36,7 @@ public class Polinomio {
 		Polinomio pol = new Polinomio(getGrado());
 		for (int i=1 ; i <= grado ; i++)
 		{
-			if(pol.coeficientes[i]<0 && (grado-i+1)%2 != 0)
-				resultado-= potenciaPorMSucesivas(pol.coeficientes[i],(grado-i+1));
-			else
-				resultado+= potenciaPorMSucesivas(pol.coeficientes[i],(grado-i+1));
+			resultado+= potenciaPorMSucesivas(pol.coeficientes[i]*x,(grado-i+1));
 		}
 		return resultado;
 	}
