@@ -1,0 +1,2 @@
+INDEX VERSION 1.129+C:\Users\Marcos\Desktop\TP2TNG14_Foglia\.metadata\.plugins\org.eclipse.jdt.core
+3976215206.index

@@ -1,0 +1,64 @@
+package tp2tng14;
+
+public class Polinomio {
+
+	private int grado;
+	private double [] coeficientes;
+	// La posicion 0 del arreglo de coeficientes contiene el coeficiente de grado n y la posicion n contiene al termino independiente.
+
+	
+	public Polinomio(int grado){
+		this.grado = grado;
+		coeficientes = new double [grado+1];
+	}
+	
+	public int getGrado() {
+		return grado;
+	}
+
+	public void setGrado(int grado) {
+		this.grado = grado;
+	}
+
+	public double[] getCoeficientes() {
+		return coeficientes;
+	}
+
+	public void setCoeficientes(double[] coeficientes) {
+		this.coeficientes = coeficientes;
+	}
+
+
+	double evaluarMSucesivas (double x){
+		return x;
+	}
+
+	double  evaluarRecursiva (double x){
+		return x;
+	}
+	
+	double evaluarRecursivaPar (double x){
+		return x;
+	}
+	
+	double evaluarProgDinamica (double x){
+		return x;
+	}
+	
+	double evaluarMejorada (double x){
+		return x;
+	}
+	
+	double evaluarPow(double x){
+		return x;
+	}
+	
+	double evaluarHorner (double x){
+		return x;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,9 @@
+package tp2tng14;
+
+public class ElevadoALaCeroException extends Exception {
+	
+	public ElevadoALaCeroException(String mensaje) {
+		super(mensaje);
+	}
+
+}
