@@ -31,11 +31,15 @@ public class Polinomio {
 	}
 
 
-	public double evaluarMSucesivas (double x) throws ElevadoALaCeroException 
-	{
+	public double evaluarMSucesivas (double x) throws ElevadoALaCeroException {
+		
 		double resultado = 0;
+		
 		for (int i=0 ; i <= this.grado ; i++)
+		{
 			resultado += this.coeficientes[i] * potenciaPorMSucesivas(x,(this.grado-i));
+		}
+		
 		return resultado;
 	}
 
@@ -71,7 +75,7 @@ public class Polinomio {
 			return (this.coeficientes[grado] * Math.pow(x, grado) + evaluarPolinomioRec(x, grado-1));
 	}
 	
-	public double evaluarRecursivaPar (double x) throws ElevadoALaCeroException{
+	public double evaluarRecursivaPar (double x) {
 		double resultado = 0;
 		for (int i = 0; i <= this.grado; i++)
 		resultado += this.coeficientes[i] * potenciaRecPar(x, i);
@@ -94,34 +98,20 @@ public class Polinomio {
 		}
 	}
 
-	public double evaluarProgDinamica (double x)
-	{
-		double resultado = 0;
-		for (int i = this.grado; i >= 0; i--)
-			resultado = resultado * x + this.coeficientes[i];
-		return resultado;
+	
+	public double evaluarProgDinamica (double x) {
+		return x;
 	}
 	
-	public double evaluarMejorada (double x) {
-		double aux = 1;
-		double resultado= this.coeficientes[0];
-		for (int i = 1; i < this.grado; i++) 
-		{
-			aux *= x;
-			resultado += this.coeficientes[i] * aux;
-		}
-		return resultado;
+	public double evaluarMejorada (double x){
+		return x;
 	}
 	
-	public double evaluarPow(double x)
-	{	
-		double resultado = 0;
-		for (int i=0 ; i <= this.grado ; i++)
-			resultado += this.coeficientes[i] * Math.pow(x,(this.grado-i));
-		
-		return resultado;
+	public double evaluarPow(double x){
+		return x;
 	}
 	
+	//No se si está bien
 	public double evaluarHorner (double x) {
 		 
 		double resultado = 0;

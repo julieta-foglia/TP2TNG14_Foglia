@@ -31,11 +31,15 @@ public class Polinomio {
 	}
 
 
-	public double evaluarMSucesivas (double x) throws ElevadoALaCeroException 
-	{
+	public double evaluarMSucesivas (double x) throws ElevadoALaCeroException {
+		
 		double resultado = 0;
+		
 		for (int i=0 ; i <= this.grado ; i++)
+		{
 			resultado += this.coeficientes[i] * potenciaPorMSucesivas(x,(this.grado-i));
+		}
+		
 		return resultado;
 	}
 
@@ -113,14 +117,10 @@ public class Polinomio {
 		return resultado;
 	}
 	
-	public double evaluarPow(double x)
-	{	
-		double resultado = 0;
-		for (int i=0 ; i <= this.grado ; i++)
-			resultado += this.coeficientes[i] * Math.pow(x,(this.grado-i));
-		
-		return resultado;
+	public double evaluarPow(double x){
+		return x;
 	}
+	
 	
 	public double evaluarHorner (double x) {
 		 
