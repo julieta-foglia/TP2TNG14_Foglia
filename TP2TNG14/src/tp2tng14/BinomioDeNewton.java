@@ -1,11 +1,10 @@
 package tp2tng14;
 
-public class Binomio {
+public class BinomioDeNewton {
 	private Polinomio binomio;
 	private int expo;
 	
-	
-	public Binomio (){
+	public BinomioDeNewton (){
 		binomio = new Polinomio(1);
 		expo = 1;
 	}
@@ -17,6 +16,7 @@ public class Binomio {
 			return 0;
 		if(n == k+1)
 			return n;
-		return combinatoria(k-1,n-1)+combinatoria(k,n-1);
+		
+		return combinatoria(k-1, n-1) + combinatoria(k, n-1);
 	}
 }

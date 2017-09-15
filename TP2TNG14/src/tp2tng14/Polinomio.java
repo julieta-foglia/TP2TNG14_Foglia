@@ -20,11 +20,15 @@ public class Polinomio {
 	
 	public Polinomio(String path) throws FileNotFoundException{
 		Scanner sc = new Scanner (new File(path));
+		
 		this.grado = sc.nextInt();
 		this.coeficientes = new double [this.grado+1];
+		
 		for (int i = 0 ; i <= this.grado;i++){
 			this.coeficientes[i] = sc.nextInt();
 		}
+		
+		sc.close();
 	}
 	
 	public int getGrado() {
@@ -141,11 +145,6 @@ public class Polinomio {
 	            resultado = this.coeficientes[i] + (x * resultado);
 		 
 	     return resultado;
-	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
