@@ -1,5 +1,9 @@
 package tp2tng14;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import tp2tng14.ElevadoALaCeroException;
 
 public class Polinomio {
@@ -12,6 +16,15 @@ public class Polinomio {
 	public Polinomio(int grado){
 		this.grado = grado;
 		coeficientes = new double [grado+1];
+	}
+	
+	public Polinomio(String path) throws FileNotFoundException{
+		Scanner sc = new Scanner (new File(path));
+		this.grado = sc.nextInt();
+		this.coeficientes = new double [this.grado+1];
+		for (int i = 0 ; i <= this.grado;i++){
+			this.coeficientes[i] = sc.nextInt();
+		}
 	}
 	
 	public int getGrado() {
@@ -55,20 +68,18 @@ public class Polinomio {
 	    return 0;
 	}
 	
-	//potencia (x, n) = x ∗ potencia(x, n−1)
-	
-	public double evaluarRecursiva(double x)
-	{
-		return evaluarPolinomioRec(x, this.getGrado());
+	public double evaluarRecursiva (double x){
+		double resultado = 0;
+		for(int i = 0 ; this.grado >= i ; i++ ){
+			resultado += this.coeficientes[i] * potencia(x,this.grado-i);
+		}
+		return resultado;
 	}
-
-	public double evaluarPolinomioRec(double x, int grado)
-	{
-		if (grado == this.getGrado())
-			return this.coeficientes[grado];
-	 
-		else 
-			return (this.coeficientes[grado] * Math.pow(x, grado) + evaluarPolinomioRec(x, grado-1));
+	
+	public double potencia(double base, double exp){
+		if(exp == 0)
+			return 1;
+		return base * potencia(base,exp-1);
 	}
 	
 	public double evaluarRecursivaPar (double x) throws ElevadoALaCeroException{
