@@ -15,8 +15,11 @@ public class PolinomiosTests {
 	public void test() throws ElevadoALaCeroException, FileNotFoundException {
 		
 		Polinomio pol = new Polinomio ("Entrada/Polinomio.txt");
-	
-		Assert.assertEquals(9, pol.evaluarHorner(1), 0.01);
+		long startTime = System.nanoTime();
+		Assert.assertEquals(9, pol.evaluarMejorada(1), 0.01);
+		long endTime = System.nanoTime();
+		System.out.println(endTime - startTime);
+
 	}
 	
 

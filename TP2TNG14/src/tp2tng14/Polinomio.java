@@ -43,10 +43,6 @@ public class Polinomio {
 		return coeficientes;
 	}
 
-	public void setCoeficientes(double[] coeficientes) {
-		this.coeficientes = coeficientes;
-	}
-
 
 	public double evaluarMSucesivas (double x) throws ElevadoALaCeroException 
 	{
@@ -117,15 +113,14 @@ public class Polinomio {
 		return resultado;
 	}
 	
-	public double evaluarMejorada (double x) {
-		double aux = 1;
-		double resultado= this.coeficientes[0];
-		for (int i = 1; i < this.grado; i++) 
-		{
-			aux *= x;
-			resultado += this.coeficientes[i] * aux;
+	public double evaluarMejorada(double x) {
+		double var = 1;
+		double resultado = 0;
+		for (int j = 0; j < coeficientes.length; j++) {
+			resultado += coeficientes[coeficientes.length-j-1] * var;
+			var *= x;
 		}
-		return resultado;
+		return resultado;	
 	}
 	
 	public double evaluarPow(double x)
