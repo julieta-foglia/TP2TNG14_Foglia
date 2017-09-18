@@ -1,0 +1,7 @@
+Complejidades computacionales:
+Msucesivas: O(n²)
+Recursiva: O(n!)
+RecursivaPar: O(n!)
+ProgDinamica: O(n)
+Mejorada: O(n)
+Horner: O(n)
