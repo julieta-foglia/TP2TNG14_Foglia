@@ -1,5 +1,9 @@
 package tp2tng14;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class BinomioDeNewton {
 	private Polinomio binomio;
 	private int expo;
@@ -11,19 +15,42 @@ public class BinomioDeNewton {
 		res = new double[expo+1];
 	}
 	
+	public BinomioDeNewton(String path) throws FileNotFoundException{
+		Scanner sc= new Scanner (new File(path));
+		binomio = new Polinomio(1);
+		binomio.getCoeficientes()[0]=sc.nextInt();
+		binomio.getCoeficientes()[1]=sc.nextInt();
+		expo = sc.nextInt();
+		res = new double [expo + 1];
+		sc.close();
+	}
+	
 	public void calcular(){	
 		for(int k = this.expo; k >= 0 ; k-- ){
-			res[expo - k] = combinatoria(k,this.expo)*Math.pow(binomio.getCoeficientes()[0], k)*Math.pow(binomio.getCoeficientes()[1], k-this.expo);
+			res[this.expo - k] = combinatoria(this.expo,k)*Math.pow(binomio.getCoeficientes()[0], k)*Math.pow(binomio.getCoeficientes()[1],this.expo-k);
 		}
-	}	
+	}
 	
-	private double combinatoria(double k, double n) {
-		if (n==k)
+	public void calcularP(){
+		double[][] mat = new double[this.expo+1][this.expo+1]; 
+		for(int i =0 ; i <= this.expo;i++){
+			for(int j = 0; j<=i; j++){
+				if(i==j || j == 0){
+					mat[i][j] = 1;
+				}else{
+					mat[i][j] = mat[i-1][j] + mat[i-1][j-1];
+				}				
+			}
+		}
+		for(int k = this.expo; k >= 0 ; k--){
+			res[this.expo - k] = mat[this.expo][this.expo-k] *Math.pow(binomio.getCoeficientes()[0], k)*Math.pow(binomio.getCoeficientes()[1],this.expo-k);
+		}
+	}
+	
+	private double combinatoria(double n, double k) {
+		if (k==0 || k==n)
 			return 1;
-		if(k < n)
-			return 0;
-		if(k == n+1)
-			return k;
-		return combinatoria(n-1, k-1) + combinatoria(n, k-1);
+		else
+			return combinatoria(n-1, k-1) + combinatoria(n-1,k);
 	}
 }
