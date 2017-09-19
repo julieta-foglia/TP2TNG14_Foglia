@@ -13,36 +13,38 @@ import tp2tng14.ElevadoALaCeroException;
 
 public class BinomiosTests {
 	
-	String path = "Entrada/Binomio.in";
-	String pathSalida = "Salidas/Binomio.out";
+	String path = "Entrada/Binomio3.in";
+	String pathSalida = "Salidas/Binomio3.out";
 	double [] resEsperado;
 	
-//	@Before
-//	public void setUpResultado() throws FileNotFoundException {
-//		Scanner sc = new Scanner(new File (path));
-//		double expo = sc.nextInt() + 1;
-//		resEsperado = new double[(int) expo];
-//		sc.close();
-//		
-//		Scanner scan = new Scanner(new File (pathSalida));
-//		for(int i=0; i<expo; i++) {
-//			resEsperado[i] = scan.nextInt();
-//		}
-//		scan.close();
-//	}
+	// Las partes comentadas se utilizan para evaluar los coeficientes del polinomio resultante. Descomentar si se quieren evaluar.
+	/*
+	@Before
+	public void setUpResultado() throws FileNotFoundException {
+		Scanner sc = new Scanner(new File (path));
+		double expo = sc.nextInt() + 1;
+		resEsperado = new double[(int) expo];
+		sc.close();
+		
+		Scanner scan = new Scanner(new File (pathSalida));
+		for(int i=0; i<expo; i++) {
+			resEsperado[i] = scan.nextInt();
+		}
+		scan.close();
+	}*/
 
 	@Test
 	public void testEvaluarMejorada() throws ElevadoALaCeroException, FileNotFoundException {
 		
 		BinomioDeNewton binomio = new BinomioDeNewton (path);
 		long startTime = System.nanoTime();
-		binomio.calcular();
+		binomio.calcularProgDinamica();
 		long endTime = System.nanoTime();
 		System.out.println("Calcular: " + (endTime - startTime));
 		
-//		for(int i=0; i < binomio.getExpo()+1; i++) {
-//			Assert.assertEquals(resEsperado[i], binomio.getRes()[i], 0.01);
-//		}
+/*		for(int i=0; i < binomio.getExpo()+1; i++) {
+			Assert.assertEquals(resEsperado[i], binomio.getRes()[i], 0.01);
+		}*/
 		
 	}
 

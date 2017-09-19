@@ -31,7 +31,7 @@ public class BinomioDeNewton {
 		}
 	}
 	
-	public void calcularP(){
+	public void calcularProgDinamica(){
 		double[][] mat = new double[this.expo+1][this.expo+1]; 
 		for(int i =0 ; i <= this.expo;i++){
 			for(int j = 0; j<=i; j++){
