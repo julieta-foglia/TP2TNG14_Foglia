@@ -18,9 +18,9 @@ public class BinomioDeNewton {
 	public BinomioDeNewton(String path) throws FileNotFoundException{
 		Scanner sc= new Scanner (new File(path));
 		binomio = new Polinomio(1);
+		expo = sc.nextInt();
 		binomio.getCoeficientes()[0]=sc.nextInt();
 		binomio.getCoeficientes()[1]=sc.nextInt();
-		expo = sc.nextInt();
 		res = new double [expo + 1];
 		sc.close();
 	}
@@ -52,5 +52,29 @@ public class BinomioDeNewton {
 			return 1;
 		else
 			return combinatoria(n-1, k-1) + combinatoria(n-1,k);
+	}
+
+	public double[] getRes() {
+		return res;
+	}
+
+	public void setRes(double[] res) {
+		this.res = res;
+	}
+
+	public Polinomio getBinomio() {
+		return binomio;
+	}
+
+	public void setBinomio(Polinomio binomio) {
+		this.binomio = binomio;
+	}
+
+	public int getExpo() {
+		return expo;
+	}
+
+	public void setExpo(int expo) {
+		this.expo = expo;
 	}
 }

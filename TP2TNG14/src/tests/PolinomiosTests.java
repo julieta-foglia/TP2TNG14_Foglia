@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
-
 import tp2tng14.ElevadoALaCeroException;
 import tp2tng14.Polinomio;
 
