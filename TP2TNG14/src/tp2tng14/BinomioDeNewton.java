@@ -53,6 +53,14 @@ public class BinomioDeNewton {
 		else
 			return combinatoria(n-1, k-1) + combinatoria(n-1,k);
 	}
+	
+	public double evaluarBinomio (double x)
+	{
+		double resultado = 0;
+		for (int i = this.expo; i >= 0; i--)
+			resultado = resultado * x + this.res[i];
+		return resultado;
+	}
 
 	public double[] getRes() {
 		return res;

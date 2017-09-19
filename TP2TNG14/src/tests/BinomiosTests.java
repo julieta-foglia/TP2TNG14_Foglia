@@ -15,10 +15,12 @@ public class BinomiosTests {
 	
 	String path = "Entrada/Binomio3.in";
 	String pathSalida = "Salidas/Binomio3.out";
+	String pathEvaluar = "Salidas/Binomio3Evaluar.out";
 	double [] resEsperado;
+	double resultadoEvaluar;
 	
-	// Las partes comentadas se utilizan para evaluar los coeficientes del polinomio resultante. Descomentar si se quieren evaluar.
-	/*
+	
+	// Configuro vector con coeficientes resultantes para comparación
 	@Before
 	public void setUpResultado() throws FileNotFoundException {
 		Scanner sc = new Scanner(new File (path));
@@ -31,20 +33,45 @@ public class BinomiosTests {
 			resEsperado[i] = scan.nextInt();
 		}
 		scan.close();
-	}*/
+	}
+	
+	// Configuro resultado de evaluar
+	@Before
+	public void setSalida() throws FileNotFoundException {
+		Scanner sc = new Scanner (new File(pathEvaluar));
+		resultadoEvaluar = sc.nextInt();
+		sc.close();
+	}
 
 	@Test
-	public void testEvaluarMejorada() throws ElevadoALaCeroException, FileNotFoundException {
+	public void testCombinatoriaYEvaluar() throws ElevadoALaCeroException, FileNotFoundException {
+		
+		BinomioDeNewton binomio = new BinomioDeNewton (path);
+		long startTime = System.nanoTime();
+		binomio.calcular();
+		long endTime = System.nanoTime();
+		System.out.println("Tiempo de ejecución: " + (endTime - startTime));
+		Assert.assertEquals(resultadoEvaluar, binomio.evaluarBinomio(1), 0.01);
+		
+		for(int i=0; i < binomio.getExpo()+1; i++) {
+			Assert.assertEquals(resEsperado[i], binomio.getRes()[i], 0.01);
+		}
+		
+	}
+	
+	@Test
+	public void testDinamicaYEvaluar() throws ElevadoALaCeroException, FileNotFoundException {
 		
 		BinomioDeNewton binomio = new BinomioDeNewton (path);
 		long startTime = System.nanoTime();
 		binomio.calcularProgDinamica();
 		long endTime = System.nanoTime();
-		System.out.println("Calcular: " + (endTime - startTime));
+		System.out.println("Tiempo de ejecución: " + (endTime - startTime));
+		Assert.assertEquals(resultadoEvaluar, binomio.evaluarBinomio(1), 0.01);
 		
-/*		for(int i=0; i < binomio.getExpo()+1; i++) {
+		for(int i=0; i < binomio.getExpo()+1; i++) {
 			Assert.assertEquals(resEsperado[i], binomio.getRes()[i], 0.01);
-		}*/
+		}
 		
 	}
 
